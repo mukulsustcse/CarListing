@@ -11,8 +11,6 @@ struct ContentView: View {
     
     @EnvironmentObject var model:CarViewModels
     
-    @State var test = ""
-    
     var body: some View {
         
         NavigationView {
@@ -33,13 +31,12 @@ struct ContentView: View {
                                 .shadow(radius: 5)
                                 .aspectRatio(CGSize(width: 335, height: 175),contentMode: .fit)
                                 
-                            
                             HStack {
                                 
                                 Image(cars.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 220, height: 210)
+                                    .frame(width: 200, height: 210)
                                     .clipped()
                                     
                                 VStack(alignment: .leading) {
@@ -50,29 +47,31 @@ struct ContentView: View {
                                         .font(.title2)
                                         .fontWeight(.bold)
                                     
-                                    Spacer()
-                                    
-                                    
                                     Text("$" + String(Int(cars.marketPrice)))
                                     
                                     Spacer()
                                     
-                                    Text(cars.model)
-                                    
+                                    HStack {
+                                        
+                                        ForEach(0..<cars.rating, id: \.self) {
+                                            
+                                            star in
+                                            
+                                            Image(systemName: "star.fill")
+                                        }
+                                    }
                                     Spacer()
                                 }
                                 .padding()
                             }
                             .cornerRadius(40)
                         }
-                        
                     }
                 }
                 .padding()
             }
             .navigationBarTitle("Car Listing")
         }
-        
     }
 }
 

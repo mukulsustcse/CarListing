@@ -9,7 +9,7 @@ import Foundation
 
 struct CarModels: Decodable, Hashable {
     
-//    var id:UUID?
+    var id:Int
     var consList: [String]
     var customerPrice:Double
     var make:String
